@@ -41,4 +41,9 @@ public class UserController {
   public ResponseEntity<List<UserEntity>> getUsers() {
     return ResponseEntity.ok(userService.fetchAllUsers());
   }
+
+  @RequestMapping(value = "/{firstName}", method = RequestMethod.GET)
+  public ResponseEntity<List<UserEntity>> getUsers(@PathVariable String firstName) {
+    return ResponseEntity.ok(userService.fetchByFirstName(firstName));
+  }
 }
