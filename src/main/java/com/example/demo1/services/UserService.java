@@ -17,4 +17,16 @@ public class UserService {
     //Logging
     return userRepository.save(user);
   }
+
+  @Transactional
+  public UserEntity updateUser(UserEntity user) {
+    userRepository.findById(user.getId())
+        .ifPresent(userEntity1 -> {
+          userEntity1.setFirstName(user.getFirstName());
+          userEntity1.setLastName(user.getLastName());
+
+          userRepository.save(userEntity1);
+        });
+    return user;
+  }
 }

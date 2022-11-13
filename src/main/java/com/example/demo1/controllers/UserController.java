@@ -21,5 +21,10 @@ public class UserController {
     return ResponseEntity.ok(userService.createUser(userEntity));
   }
 
+  @RequestMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.PUT)
+  public ResponseEntity<UserEntity> updateUser(@RequestBody UserEntity userEntity) {
+    return ResponseEntity.ok(userService.updateUser(userEntity));
+  }
+
   //ToDO: Update user, delete user, fetch user, fetch all users
 }
