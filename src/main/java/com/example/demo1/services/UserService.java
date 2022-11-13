@@ -6,14 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Optional;
 
+//TODO: Add Validations and logging
 @Service
 public class UserService {
   @Autowired
   UserRepository userRepository;
 
   public UserEntity createUser(UserEntity user) {
-    //Validations: Check if first name is provided
     //Logging
     return userRepository.save(user);
   }
@@ -28,5 +30,17 @@ public class UserService {
           userRepository.save(userEntity1);
         });
     return user;
+  }
+
+  public Optional<UserEntity> fetchUser(Long userId) {
+    return userRepository.findById(userId);
+  }
+
+  public List<UserEntity> fetchAllUsers() {
+    return userRepository.findAll();
+  }
+
+  public void deleteUser(Long userId) {
+    userRepository.deleteById(userId);
   }
 }
