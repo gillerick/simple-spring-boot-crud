@@ -2,10 +2,11 @@ package com.example.demo1.models;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "book")
-public class BookEntity implements Serializable {
+public class Book implements Serializable {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
@@ -14,14 +15,18 @@ public class BookEntity implements Serializable {
   @Column(unique = true)
   private String isbn;
 
+  @OneToMany(mappedBy = "book", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 
-  public BookEntity(String title, String author, String isbn) {
+  private Set<Page> pages;
+
+
+  public Book(String title, String author, String isbn) {
     this.title = title;
     this.author = author;
     this.isbn = isbn;
   }
 
-  public BookEntity() {
+  public Book() {
   }
 
   public Long getId() {
