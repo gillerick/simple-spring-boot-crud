@@ -26,13 +26,13 @@ public class UserController {
     return ResponseEntity.ok(userService.updateUser(userEntity));
   }
 
-  @RequestMapping(value = "/{userId}", method = RequestMethod.PUT)
+  @RequestMapping(value = "/{userId}", method = RequestMethod.DELETE)
   public ResponseEntity<Void> deleteUser(@RequestParam(name = "userId") Long userId) {
     userService.deleteUser(userId);
     return ResponseEntity.ok(null);
   }
 
-  @RequestMapping(value = "/{userId}", method = RequestMethod.PUT)
+  @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
   public ResponseEntity<Optional<UserEntity>> getUser(@PathVariable Long userId) {
     return ResponseEntity.ok(userService.fetchUser(userId));
   }

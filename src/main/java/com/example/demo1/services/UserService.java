@@ -16,7 +16,6 @@ public class UserService {
   UserRepository userRepository;
 
   public UserEntity createUser(UserEntity user) {
-    //Logging
     return userRepository.save(user);
   }
 
